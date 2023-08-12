@@ -5,7 +5,9 @@
  
 ## Games Implemented
  Heatmap demo
+ 
  A* pathfinding and movement demo
+ 
  Conway's Game of Life
  
 ## Games and features Planned
