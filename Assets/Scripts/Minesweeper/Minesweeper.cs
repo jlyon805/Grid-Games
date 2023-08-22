@@ -128,7 +128,22 @@ public class Tile
         grid.TriggerGridObjectChanged(x, y);
         if (status == (byte)StatusFlags.clear)
         {
-            // BFS here
+            Queue<Tile> q = new Queue<Tile>();
+            List<Tile> visited = new List<Tile>();
+            q.Enqueue(this);
+            while (q.Count > 0)
+            {
+                Tile tile = q.Dequeue();
+                foreach (Tile neighbour in GetNeighbours(tile))
+                {
+                    if (neighbour.GetStatus() >> 2 != (byte)StatusFlags.mine)
+                    {
+                        neighbour.Uncover();
+                        if (neighbour.GetStatus() == (byte)StatusFlags.clear && !visited.Contains(neighbour))
+                            q.Enqueue(neighbour);
+                    }
+                }
+            }
         }
     }
 
