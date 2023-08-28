@@ -147,6 +147,21 @@ public class Tile
         }
     }
 
+    public bool IsCovered()
+    {
+        return (status & 0x02) != (byte)StatusFlags.uncovered;
+    }
+
+    public bool IsFlagged()
+    {
+        return (status & 0x01) == (byte)StatusFlags.flag;
+    }
+
+    public void Flag()
+    {
+        status ^= 0x01;
+    }
+
     private List<Tile> GetNeighbours(Tile tile)
     {
         int x = tile.x;
