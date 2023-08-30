@@ -19,7 +19,7 @@ public class Grid<TGridObj>
     private Vector3 originPosition;
     private TGridObj[,] gridArray;
     private TextMesh[,] debugTextArray;
-    private bool showDebug = false;
+    private bool showDebug = true;
     private bool showText = false;
 
     public Grid(int width, int height, float cellSize, Vector3 originPosition, Func<Grid<TGridObj>, int, int, TGridObj> createGridObj)

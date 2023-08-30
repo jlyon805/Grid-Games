@@ -7,12 +7,14 @@ public class SnakeGameManager : MonoBehaviour
     private Grid<PathNode> grid;
     private bool gameover = true;
 
-    [SerializeField] private int width;
-    [SerializeField] private int height;
+    private int width = 20;
+    private int height = 20;
+
+    [SerializeField] private Snake snake;
     // Start is called before the first frame update
     void Start()
     {
-        grid = new Grid<PathNode>(20, 20, 5f, Vector3.zero,
+        grid = new Grid<PathNode>(width, height, 1f, new Vector3(-(width/2), -(height/2), 0f),
              (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
 
@@ -21,17 +23,9 @@ public class SnakeGameManager : MonoBehaviour
     {
         
     }
-}
 
-public class SnakeObj
-{
-    private Grid<SnakeObj> grid;
-    int x, y;
-
-    public SnakeObj(Grid<SnakeObj> grid, int x, int y)
+    public (int, int) GetGridSize()
     {
-        this.grid = grid;
-        this.x = x;
-        this.y = y;
+        return (grid.GetWidth(), grid.GetHeight());
     }
 }

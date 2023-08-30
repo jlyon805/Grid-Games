@@ -4,15 +4,52 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
+    private float updateTime = 1f;
+    private Vector2 gridPos;
+    private Vector2Int moveDirection;
+
+    private float moveTime;
+    private float moveTimeMax;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        gridPos = new Vector2(.5f,.5f);
+        moveTime = 1f;
+        moveTimeMax = moveTime;
+        moveDirection = Vector2Int.right;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            moveDirection.x = 0;
+            moveDirection.y = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            moveDirection.x = 0;
+            moveDirection.y = -1;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            moveDirection.x = -1;
+            moveDirection.y = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            moveDirection.x = 1;
+            moveDirection.y = 0;
+        }
+
+        moveTime += Time.deltaTime;
+        if (moveTime >= moveTimeMax)
+        {
+            gridPos += moveDirection;
+            moveTime -= moveTimeMax;
+        }
+
+        transform.position = new Vector3(gridPos.x, gridPos.y, 0f);
     }
 }
