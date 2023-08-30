@@ -19,6 +19,13 @@ public class AStarPathfinding
         grid = new Grid<PathNode>(width, height, 10f, Vector3.zero,
                   (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
+
+    public AStarPathfinding(Grid<PathNode> g)
+    {
+        Instance = this;
+        grid = g;
+    }
+
     public Grid<PathNode> GetGrid()
     {
         return grid;
