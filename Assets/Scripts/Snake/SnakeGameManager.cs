@@ -26,6 +26,6 @@ public class SnakeGameManager : MonoBehaviour
 
     public (int, int) GetGridSize()
     {
-        return (grid.GetWidth(), grid.GetHeight());
+        return (width, height);
     }
 }
