@@ -12,6 +12,9 @@ public class GameOfLife : MonoBehaviour
 
     [SerializeField] private GameOfLifeVisual lifeVisual;
 
+    private float runningTime;
+    private float runningTimeMax;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,8 @@ public class GameOfLife : MonoBehaviour
              (Grid<LifeCell> g, int x, int y) => new LifeCell(g, x, y));
 
         lifeVisual.SetGrid(grid);
+        runningTime = .25f;
+        runningTimeMax = runningTime;
     }
 
     // Update is called once per frame
@@ -32,8 +37,13 @@ public class GameOfLife : MonoBehaviour
                 cell.SetAlive();
         }
 
-        if (running)
+        runningTime += Time.deltaTime;
+
+        if (running && (runningTime >= runningTimeMax))
+        {
             UpdateFrame();
+            runningTime -= runningTimeMax;
+        }
     }
 
     public void UpdateFrame()
