@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    private float updateTime = 1f;
     private Vector2 gridPos;
     private Vector2Int moveDirection;
 
