@@ -9,6 +9,13 @@ public class Snake : MonoBehaviour
 
     private float moveTime;
     private float moveTimeMax;
+
+    private SnakeGameManager gameManager;
+
+    public void Setup(SnakeGameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
     // Start is called before the first frame update
     void Awake()
     {
@@ -47,8 +54,9 @@ public class Snake : MonoBehaviour
         {
             gridPos += moveDirection;
             moveTime -= moveTimeMax;
-        }
+            transform.position = new Vector3(gridPos.x, gridPos.y, 0f);
 
-        transform.position = new Vector3(gridPos.x, gridPos.y, 0f);
+            gameManager.OnSnakeMoved(gridPos);
+        }
     }
 }
